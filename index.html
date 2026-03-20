@@ -33,7 +33,7 @@
         </div>
         
         <div class="bg-blue-50 rounded-2xl p-4 mb-4 border border-blue-100">
-            <p class="text-sm italic text-blue-800">"Ara is observing collaborative play between 2 children..."</p>
+            <p id="top-observation" class="text-sm italic text-blue-800">"Ara is observing collaborative play between 2 children..."</p>
         </div>
 
         <div class="space-y-3">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="flex gap-2 justify-end">
-                <div class="bg-blue-600 p-3 rounded-2xl rounded-tr-none shadow-sm text-sm text-white">
+                <div id="ara-bubble" class="bg-blue-600 p-3 rounded-2xl rounded-tr-none shadow-sm text-sm text-white transition-all duration-500">
                     "Wonderful sharing, Ji-woo!"
                 </div>
                 <div class="text-xs font-bold text-blue-400 mt-1">Ara</div>
@@ -54,11 +54,11 @@
 
     <div class="max-w-md mx-auto grid grid-cols-2 gap-4">
         <div class="bg-white p-4 rounded-2xl shadow-sm border text-center">
-            <p class="text-2xl font-bold text-purple-500">85%</p>
+            <p class="text-2xl font-bold text-purple-500 stat-value">85%</p>
             <p class="text-[10px] font-bold uppercase text-gray-400">Communication</p>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border text-center">
-            <p class="text-2xl font-bold text-orange-400">92%</p>
+            <p class="text-2xl font-bold text-orange-400 stat-value">92%</p>
             <p class="text-[10px] font-bold uppercase text-gray-400">Social Skills</p>
         </div>
     </div>
@@ -69,64 +69,44 @@
             Generate Daily Nuri Report
         </button>
     </div>
+
     <script>
-    // 1. Make the live transcription change every 8 seconds
-    const phrases = [
-        "Wonderful sharing, Ji-woo!",
-        "Analyzing child's tone... Positive.",
-        "Social interaction detected: Turn-taking.",
-        "Ara: 'Can you tell me more about that?'",
-        "Engagement levels: High."
-    ];
-    let phraseIndex = 0;
-    const transcriptElement = document.querySelector('.bg-gray-50 p'); // Targets your transcript text
+        // THE ENGINE: This makes everything move
+        const phrases = [
+            "Wonderful sharing, Ji-woo!",
+            "Analyzing social cues... Positive.",
+            "Turn-taking detected.",
+            "UCL Fair Demo: Ara is Active.",
+            "New social goal reached!",
+            "Engagement levels: High."
+        ];
+        
+        const observations = [
+            "Ara is observing collaborative play...",
+            "Analyzing verbal exchange...",
+            "Monitoring emotional resonance...",
+            "Scanning for social milestones..."
+        ];
 
-    setInterval(() => {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        if(transcriptElement) transcriptElement.innerText = phrases[phraseIndex];
-    }, 8000);
+        let i = 0;
+        const bubble = document.getElementById('ara-bubble');
+        const obs = document.getElementById('top-observation');
 
-    // 2. Make the percentages drift slightly (Realism)
-    setInterval(() => {
-        const stats = document.querySelectorAll('.text-2xl.font-bold');
-        stats.forEach(stat => {
-            let current = parseInt(stat.innerText);
-            let drift = Math.floor(Math.random() * 3) - 1; // Drifts by -1, 0, or +1
-            stat.innerText = (current + drift) + "%";
-        });
-    }, 5000);
-</script>
-<script>
-    const demoPhrases = [
-        "Wonderful sharing, Ji-woo!",
-        "Analyzing social cues... Positive.",
-        "Social interaction detected: Turn-taking.",
-        "UCL Fair Demo: Ara is Active.",
-        "New social goal reached!"
-    ];
-    let phraseIndex = 0;
+        // Update Text every 4 seconds
+        setInterval(() => {
+            i++;
+            if(bubble) bubble.innerText = `"${phrases[i % phrases.length]}"`;
+            if(obs) obs.innerText = `"${observations[i % observations.length]}"`;
+        }, 4000);
 
-    setInterval(() => {
-        // This looks for ANY element that contains the word "Wonderful"
-        const allElements = document.querySelectorAll('*');
-        allElements.forEach(el => {
-            if (el.children.length === 0 && el.innerText.includes("Wonderful")) {
-                phraseIndex = (phraseIndex + 1) % demoPhrases.length;
-                el.innerText = `"${demoPhrases[phraseIndex]}"`;
-            }
-        });
-    }, 4000);
-
-    // Keep the numbers moving
-    setInterval(() => {
-        document.querySelectorAll('.text-2xl.font-bold, p.text-2xl').forEach(stat => {
-            let current = parseInt(stat.innerText);
-            if (!isNaN(current)) {
+        // Update Percentages every 3 seconds
+        setInterval(() => {
+            document.querySelectorAll('.stat-value').forEach(stat => {
+                let current = parseInt(stat.innerText);
                 let drift = Math.random() > 0.5 ? 1 : -1;
                 stat.innerText = (current + drift) + "%";
-            }
-        });
-    }, 3000);
-</script>
+            });
+        }, 3000);
+    </script>
 </body>
 </html>
