@@ -97,35 +97,34 @@
     }, 5000);
 </script>
 <script>
-    // 1. Dynamic Text Cycle
     const demoPhrases = [
         "Wonderful sharing, Ji-woo!",
         "Analyzing social cues... Positive.",
         "Social interaction detected: Turn-taking.",
-        "Engagement levels: 92%",
         "UCL Fair Demo: Ara is Active.",
         "New social goal reached!"
     ];
     let phraseIndex = 0;
 
     setInterval(() => {
-        // This looks for the blue box by its color class
-        const bubbles = document.querySelectorAll('.bg-blue-600');
-        bubbles.forEach(bubble => {
-            phraseIndex = (phraseIndex + 1) % demoPhrases.length;
-            bubble.innerText = `"${demoPhrases[phraseIndex]}"`;
+        // This looks for ANY element that contains the word "Wonderful"
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(el => {
+            if (el.children.length === 0 && el.innerText.includes("Wonderful")) {
+                phraseIndex = (phraseIndex + 1) % demoPhrases.length;
+                el.innerText = `"${demoPhrases[phraseIndex]}"`;
+            }
         });
     }, 4000);
 
-    // 2. Percentage Drift
+    // Keep the numbers moving
     setInterval(() => {
-        const stats = document.querySelectorAll('.text-2xl.font-bold');
-        stats.forEach(stat => {
+        document.querySelectorAll('.text-2xl.font-bold, p.text-2xl').forEach(stat => {
             let current = parseInt(stat.innerText);
-            let drift = Math.random() > 0.5 ? 1 : -1;
-            if (current > 98) current = 94;
-            if (current < 60) current = 75;
-            stat.innerText = (current + drift) + "%";
+            if (!isNaN(current)) {
+                let drift = Math.random() > 0.5 ? 1 : -1;
+                stat.innerText = (current + drift) + "%";
+            }
         });
     }, 3000);
 </script>
