@@ -69,5 +69,32 @@
             Generate Daily Nuri Report
         </button>
     </div>
+    <script>
+    // 1. Make the live transcription change every 8 seconds
+    const phrases = [
+        "Wonderful sharing, Ji-woo!",
+        "Analyzing child's tone... Positive.",
+        "Social interaction detected: Turn-taking.",
+        "Ara: 'Can you tell me more about that?'",
+        "Engagement levels: High."
+    ];
+    let phraseIndex = 0;
+    const transcriptElement = document.querySelector('.bg-gray-50 p'); // Targets your transcript text
+
+    setInterval(() => {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        if(transcriptElement) transcriptElement.innerText = phrases[phraseIndex];
+    }, 8000);
+
+    // 2. Make the percentages drift slightly (Realism)
+    setInterval(() => {
+        const stats = document.querySelectorAll('.text-2xl.font-bold');
+        stats.forEach(stat => {
+            let current = parseInt(stat.innerText);
+            let drift = Math.floor(Math.random() * 3) - 1; // Drifts by -1, 0, or +1
+            stat.innerText = (current + drift) + "%";
+        });
+    }, 5000);
+</script>
 </body>
 </html>
