@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuri-Bridge | Ara Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Paprika&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f8fafc; }
+        .logo-font { font-family: 'Paprika', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-md mx-auto flex justify-between items-center mb-8">
+        <h1 class="text-2xl text-blue-600 logo-font">Nuri-Bridge</h1>
+        <div class="flex items-center gap-2 bg-white px-3 py-1 rounded-full shadow-sm border">
+            <div class="w-2 h-2 bg-green-500 rounded-full pulse"></div>
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Ara: Active</span>
+        </div>
+    </div>
+
+    <div class="max-w-md mx-auto glass rounded-3xl p-6 shadow-xl mb-6 border-t-4 border-blue-400">
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <p class="text-xs font-bold text-blue-500 uppercase tracking-wider">Current Domain</p>
+                <h2 class="text-xl font-bold text-gray-800">Social Relations</h2>
+            </div>
+            <span class="text-3xl">🤝</span>
+        </div>
+        
+        <div class="bg-blue-50 rounded-2xl p-4 mb-4 border border-blue-100">
+            <p class="text-sm italic text-blue-800">"Ara is observing collaborative play between 2 children..."</p>
+        </div>
+
+        <div class="space-y-3">
+            <div class="flex gap-2">
+                <div class="text-xs font-bold text-gray-400 mt-1">14:02</div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-gray-700">
+                    "우리 같이 놀자! (Let's play together!)"
+                </div>
+            </div>
+            <div class="flex gap-2 justify-end">
+                <div class="bg-blue-600 p-3 rounded-2xl rounded-tr-none shadow-sm text-sm text-white">
+                    "Wonderful sharing, Ji-woo!"
+                </div>
+                <div class="text-xs font-bold text-blue-400 mt-1">Ara</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-md mx-auto grid grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl shadow-sm border text-center">
+            <p class="text-2xl font-bold text-purple-500">85%</p>
+            <p class="text-[10px] font-bold uppercase text-gray-400">Communication</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-sm border text-center">
+            <p class="text-2xl font-bold text-orange-400">92%</p>
+            <p class="text-[10px] font-bold uppercase text-gray-400">Social Skills</p>
+        </div>
+    </div>
+
+    <div class="max-w-md mx-auto mt-8 text-center">
+        <p class="text-xs text-gray-400 mb-4 font-medium italic">Ambient Audio Intelligence | No Cameras. Just Connection.</p>
+        <button class="bg-gray-900 text-white w-full py-4 rounded-2xl font-bold shadow-lg active:scale-95 transition-all">
+            Generate Daily Nuri Report
+        </button>
+    </div>
+</body>
+</html>
